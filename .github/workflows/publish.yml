@@ -28,6 +28,7 @@ jobs:
       - run: npm ci
       - name: Collect public listings
         id: collect
+        if: github.event_name != 'push'
         continue-on-error: true
         run: npm run collect
       - run: npm run verify

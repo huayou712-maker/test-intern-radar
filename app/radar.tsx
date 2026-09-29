@@ -27,7 +27,7 @@ function validWatch(value:unknown):value is Watch {
 }
 export default function Radar({initial}:{initial:Snapshot}) {
   const [data,setData]=useState(initial);
-  const [tab,setTab]=useState('all');
+  const [tab,setActiveTab]=useState('all');
   const [query,setQuery]=useState('');
   const [city,setCity]=useState('');
   const [nature,setNature]=useState('all');
@@ -36,6 +36,7 @@ export default function Radar({initial}:{initial:Snapshot}) {
   const [status,setStatus]=useState('open');
   const [sort,setSort]=useState('new');
   const [source,setSource]=useState('all');
+  const setTab=(value:string)=>{setActiveTab(value);if(value==='all')setSource('all');};
   const [selected,setSelected]=useState<string|null>(null);
   const [watch,setWatch]=useState<Watch>(defaultWatch);
   const [draft,setDraft]=useState<Watch>(defaultWatch);
