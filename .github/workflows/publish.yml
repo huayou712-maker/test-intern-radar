@@ -1,0 +1,55 @@
+name: Collect and publish radar
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: radar-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Collect public listings
+        id: collect
+        continue-on-error: true
+        run: npm run collect
+      - run: npm run verify
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/verify-ui.mjs
+      - name: Save verified history
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/state.json public/data/jobs.json public/feed.xml
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update public job observations'
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+          retention-days: 1
+      - uses: actions/deploy-pages@v4
+        id: deployment
+      - name: Report collection failure
+        if: steps.collect.outcome == 'failure'
+        run: exit 1

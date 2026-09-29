@@ -1,0 +1,30 @@
+import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
+import { XMLBuilder } from 'fast-xml-parser';
+import { collectCiic, collectNcss } from '../lib/sources.mjs';
+import { mergeState, JobSchema, classify } from '../lib/model.mjs';
+
+const now=new Date().toISOString();
+const previous=JSON.parse(await readFile('data/state.json','utf8'));
+previous.jobs.forEach(job=>JobSchema.parse(job));
+previous.jobs=previous.jobs.filter(job=>classify(job.title,job.description,job.internship_evidence));
+previous.events=previous.events.filter(event=>previous.jobs.some(job=>job.id===event.job_id));
+const adapters=[{id:'ciic',name:'中智招聘',url:'https://www.ciiczhaopin.com/campus/index',run:collectCiic},{id:'ncss',name:'国家大学生就业服务平台',url:'https://www.ncss.cn/student/jobs/index.html',run:collectNcss}];
+const settled=await Promise.allSettled(adapters.map(async adapter=>{
+  console.log('开始采集',adapter.name);
+  const result=await adapter.run(now);
+  console.log('采集完成',adapter.name,'检查',result.scanned,'匹配',result.jobs.length);
+  return result;
+}));
+const results=settled.map((result,i)=>result.status==='fulfilled'?result.value:{id:adapters[i].id,name:adapters[i].name,url:adapters[i].url,status:'error',error:String(result.reason?.message || result.reason),scope:'采集失败，请查看来源原页',scanned:0,matched:0,limited:true});
+const state=mergeState(previous,results,now);
+await mkdir('public/data',{recursive:true});
+const data=JSON.stringify(state,null,2)+'\n';
+await writeFile('data/state.json.next',data);
+await rename('data/state.json.next','data/state.json');
+await writeFile('public/data/jobs.json',data);
+const base='https://huayou712-maker.github.io/test-intern-radar/';
+const events=[...state.events].reverse().slice(0,100);
+const rss=new XMLBuilder({ignoreAttributes:false,format:true}).build({rss:{'@_version':'2.0',channel:{title:'测试开发实习岗位雷达',link:base,description:'真实公开岗位的新发现、变化与截止提醒',lastBuildDate:new Date(now).toUTCString(),item:events.map(event=>{const job=state.jobs.find(j=>j.id===event.job_id);return {title:`${event.type==='new'?'新增':event.type==='deadline'?'即将截止':'更新'} · ${job.company} · ${job.title}`,link:base+'?job='+encodeURIComponent(job.id),guid:event.id,pubDate:new Date(event.at).toUTCString(),description:`${job.city}；${job.education}；${job.source_url}`};})}}});
+await writeFile('public/feed.xml','<?xml version="1.0" encoding="UTF-8"?>\n'+rss);
+console.log(JSON.stringify({jobs:state.jobs.length,events:state.events.length,sources:state.sources},null,2));
+if(results.every(source=>source.status==='error')) process.exitCode=1;
