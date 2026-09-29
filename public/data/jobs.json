@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-29T07:23:08.543Z",
+  "generated_at": "2026-09-29T07:24:57.658Z",
   "jobs": [
     {
       "id": "ciic:da548ad784ed4ce686fd9f9e61e56d3e",
@@ -45,8 +45,8 @@
         "Android）的基础测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "baeb980c8eb5567d803214a2a299900aac98b81f688f7b6ab24773b20ae72148",
@@ -79,8 +79,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "132028729afce1207118cea0e8c34b4d110580f52488bb4d8a80b7c3715b2f64",
@@ -120,8 +120,8 @@
         "Appium"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "1665c29e1cb05d93b5eba54f69b3770c42ecd5db44455a6a9f6ae145de1d6f1d",
@@ -154,8 +154,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "eb442a48921a579242118706b70eef9f8483cdd6063acbc78fb54c8d77329503",
@@ -188,8 +188,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "4c11c1a79a7103a189f67190eb49b92a923c66bf8216017480057f72b83426ea",
@@ -222,8 +222,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "f086e43949eec2c9efcb6d7f7f2727eee4a60d8d5f37580e90cfe5ee8df68a89",
@@ -256,8 +256,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "190c974d2035f590da5464fae94ea70f7ba7dd1caa4af0d0cff7d52565a30221",
@@ -287,8 +287,8 @@
         "功能测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "15d11c842a4e29bd9312f3f53d84bf2012357f0c78730250c99150b3273ec9d0",
@@ -323,8 +323,8 @@
         "测试平台"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "619201d974595556c5f21c780b92fc44f442837d4e435507e7884522239e7e15",
@@ -359,8 +359,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "73841edfe3ba7ec6a3026d8aafefd48b2672be7fbbaa8c77bb7848c5c2318c88",
@@ -395,8 +395,8 @@
         "测试平台"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "dc6e343bb96aebe064ce088618e9c94f2ff0f2e9fde68e941b2e259652c31ca7",
@@ -429,8 +429,8 @@
         "测试工具"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "d60d864ce88ea19f05e0b7ab551bf0cc56b2a42921654b16d26f5e9f6e7de72f",
@@ -459,8 +459,8 @@
         "功能测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "78ded84894ef599c73ccf4e6eac68ae20531a082a4cc867f32473103547b77c3",
@@ -495,8 +495,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "fba3d866c34c169973c6888e86c2b53abc66307c28ef074eec386838326ff44d",
@@ -531,8 +531,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "3f977cac086979cd8da24e48f19d6ca2d4d4f504bae016faaae7d739e109ef4e",
@@ -562,8 +562,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "4853cd019d64f5ac3636ccedefd228a689ca95af377f96507a99ee27ac6d56a4",
@@ -598,8 +598,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "888ccb0ee9b006a744f565fdb3743eba9f69c90be86e4d032670e7830e3fe159",
@@ -634,8 +634,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "2d27490790e3bd24768b7b328e616326817b1eb8c26aac2d278d5f381de6d788",
@@ -670,8 +670,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "db116e45a3ba15088ab7f781e029258dbf3c6b99f716c9d569fe48fbe515cedb",
@@ -706,8 +706,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "7b6982f4ccfd099484acfcbf849735c3d153a0b3ff9bd806d6bd950df70458cb",
@@ -742,8 +742,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "b38be20dda6176a6583fe5b03dbf221acca77afe7113e2922edb164d8e5bf5b4",
@@ -778,8 +778,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "08aba2c482497cc7c0b3d72dd0a89c2980393d70e29675bc8c5b69e0ba51bc76",
@@ -814,8 +814,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "08aba2c482497cc7c0b3d72dd0a89c2980393d70e29675bc8c5b69e0ba51bc76",
@@ -850,8 +850,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_seen_at": "2026-09-29T07:19:37.347Z",
-      "last_checked_at": "2026-09-29T07:19:37.347Z",
+      "last_seen_at": "2026-09-29T07:24:57.658Z",
+      "last_checked_at": "2026-09-29T07:24:57.658Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "f33fa9cc687158ccb5f01c0a693cbab36123ec2b456f35c15f9d8b5d39f2781c",
@@ -1035,12 +1035,12 @@
       "url": "https://www.ciiczhaopin.com/campus/index",
       "status": "partial",
       "error": "https://www.ciiczhaopin.com/position/detail?uuid=87cc913fb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=34b5673ab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=615a62cdb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30e91b46b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30eb902cb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=87cf0014b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=356b4680b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3a02333db64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=337f9731b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=2ade1395b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30e6e15fb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=8579c04ab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=31189777b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=626540a2b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3b44e2dab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=87ca232ab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=d139c147457a4466b625b25da4ca41fe 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=32e2affbb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=843bca72b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=307d2cd4b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30d39e54b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30d12001b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30f28d16b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30f76ddfb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=8851a9f3b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30f50e59b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=9a7d1882b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3a5af9ecb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3e1e7072b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30dd4d5eb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30d85f85b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3f0526a3b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=43e6a0d0b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3eaacc63b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30dacda9b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=39f1b80cb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30dfac02b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=322b8251b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3ed15719b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=63e9346eb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=7132ddc642d74f229cc18b98ded0b3c7 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=30e226dcb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=63f07f67b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=6403dc17b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=644b1185b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=98986f0eb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=32624148b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=39d08e1cb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=42a1d96bb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=7d3e01e2b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=843e300bb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3188ec5eb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3a31f305b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=8c5bdfcbb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=64015fa6b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=5cc21056b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=5cbfa439b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=2bfcca7fb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=87d8bcaab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=87d3e24ab64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=3f9e6b54b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a13ba95db64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a1e569c0b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a28e0b13b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a3343802b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a4ed5476b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=a9b9b97eb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=32c1310db64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=382a5bf9b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=6729c54fb64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=206be7c1b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=20733584b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content\nhttps://www.ciiczhaopin.com/position/detail?uuid=385a21f8b64411f18319080058000005 岗位正文不存在或页面结构变化：.describe-content",
-      "scanned": 208,
+      "scanned": 209,
       "scope": "测试 / SDET / QA，每个关键词最多 400 条；详情无法核验 73 条",
       "limited": true,
       "matched": 1,
-      "last_success_at": "2026-09-29T07:19:37.347Z",
-      "checked_at": "2026-09-29T07:19:37.347Z"
+      "last_success_at": "2026-09-29T07:24:57.658Z",
+      "checked_at": "2026-09-29T07:24:57.658Z"
     },
     {
       "id": "ncss",
@@ -1052,8 +1052,8 @@
       "scope": "实习分类搜索测试 / SDET / QA，每个关键词前五页、最多 50 条；详情无法核验 5 条",
       "limited": true,
       "matched": 23,
-      "last_success_at": "2026-09-29T07:19:37.347Z",
-      "checked_at": "2026-09-29T07:19:37.347Z"
+      "last_success_at": "2026-09-29T07:24:57.658Z",
+      "checked_at": "2026-09-29T07:24:57.658Z"
     }
   ]
 }
