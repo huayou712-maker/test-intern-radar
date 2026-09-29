@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Job, Snapshot, Watch } from '../lib/types';
+import JobAnalysis from './job-analysis';
 
 const base='/test-intern-radar';
 const repo='https://github.com/huayou712-maker/test-intern-radar';
@@ -34,6 +35,7 @@ export default function Radar({initial}:{initial:Snapshot}) {
   const [year,setYear]=useState('');
   const [status,setStatus]=useState('open');
   const [sort,setSort]=useState('new');
+  const [source,setSource]=useState('all');
   const [selected,setSelected]=useState<string|null>(null);
   const [watch,setWatch]=useState<Watch>(defaultWatch);
   const [draft,setDraft]=useState<Watch>(defaultWatch);
@@ -90,10 +92,18 @@ export default function Radar({initial}:{initial:Snapshot}) {
     return (!query || parts(query.replace(/\s+/g,',')).every(term=>search.includes(term.toLowerCase()))) &&
       (!city || job.city.includes(city)) && (nature!=='state' || stateCompany(job.company_type)) &&
       (!degree || /本科|大专|不限/.test(job.education)) && (!year || job.graduation_year.includes(year)) &&
+      (source==='all' || data.jobs.some(j=>groupIds.includes(j.id) && j.source===source)) &&
       (status==='all' || (status==='open' ? active.includes(job) : job.status===status)) &&
       (tab!=='matches' || matches(job,watch)) && (tab!=='today' || todayEvents.some(e=>groupIds.includes(e.job_id)) || closing.includes(job));
   }).sort((a,b)=>sort==='deadline'?(a.deadline||'9999').localeCompare(b.deadline||'9999'):b.first_seen_at.localeCompare(a.first_seen_at));
   const detail=data.jobs.find(j=>j.id===selected);
+  function exportJobs() {
+    const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),filters:{query,city,nature,degree,year,status,source,tab},jobs:shown},null,2)],{type:'application/json;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=url;link.download='test-intern-jobs.json';link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    setMessage(`已导出当前筛选的 ${shown.length} 个岗位，包含完整要求和来源链接。`);
+  }
   const openJob=(job:Job)=>{setSelected(job.id);window.history.replaceState(null,'',`${base}/?job=${encodeURIComponent(job.id)}`);};
   const closeJob=()=>{setSelected(null);window.history.replaceState(null,'',base+'/');};
   const saveWatch=()=>{setWatch(draft);localStorage.setItem('radar-watch-v1',JSON.stringify(draft));setMessage('关注条件已保存在当前浏览器。');};
@@ -130,6 +140,7 @@ export default function Radar({initial}:{initial:Snapshot}) {
           <div className="sync-evidence"><span>本轮检查候选 <b>{data.sources.reduce((sum,source)=>sum+source.scanned,0)}</b> 条</span><span>接入 <b>{data.sources.length}</b> 个来源 · <a href={base+'/data/jobs.json'} target="_blank" rel="noreferrer">查看采集数据 ↗</a></span><a href={repo+'/actions'} target="_blank" rel="noreferrer">查看每次运行记录 ↗</a></div>
           <button disabled={syncing} onClick={()=>void syncData(true)}>{syncing?'正在同步…':'同步最新数据'}</button>
         </section>
+        {['all','today','matches'].includes(tab)&&<section className="source-tools" aria-label="来源筛选与导出"><label>招聘来源 <select aria-label="招聘来源" value={source} onChange={e=>setSource(e.target.value)}><option value="all">全部来源</option>{data.sources.map(item=><option key={item.id} value={item.id}>{item.name}</option>)}</select></label><button onClick={exportJobs} disabled={!shown.length}>导出筛选岗位 JSON</button><span>保存完整正文、核验时间和投递链接</span></section>}
         <div className="stats-grid"><div><span>已核验在招</span><b>{active.length}</b><small>合并完全相同的重复记录</small></div><div><span>今日新增</span><b>{jobs.filter(j=>day(j.first_seen_at)===today).length}</b><small>以首次发现时间计算</small></div><div><span>与你匹配</span><b>{matchesCount}</b><small>符合当前关注条件</small></div><div><span>三天内截止</span><b>{closing.length}</b><small>只计算明确公布的日期</small></div></div>
         {tab==='watch'?<section className="settings-panel"><h2>我的关注条件</h2><p>保存在当前浏览器；可以导出后在其他设备导入。</p><div className="form-grid"><label>关注企业<input value={draft.companies} onChange={e=>setDraft({...draft,companies:e.target.value})} placeholder="中国电信，中国移动，中国电子"/><small>留空表示全部企业；支持名称包含匹配</small></label><label>工作地点<input value={draft.cities} onChange={e=>setDraft({...draft,cities:e.target.value})} placeholder="北京，成都，西安，南京"/><small>使用逗号分隔，留空表示全国</small></label><label>单位性质<select value={draft.nature} onChange={e=>setDraft({...draft,nature:e.target.value})}><option value="all">全部单位</option><option value="state">国企 / 央企（来源明确标注）</option></select></label><label>毕业年份<input value={draft.year} onChange={e=>setDraft({...draft,year:e.target.value})} placeholder="例如 2027，留空表示全部"/></label><label className="check"><input type="checkbox" checked={draft.degree} onChange={e=>setDraft({...draft,degree:e.target.checked})}/>学历为本科、大专或不限</label></div><div className="actions"><button className="primary" onClick={saveWatch}>保存关注条件</button><button onClick={downloadWatch}>导出条件</button><label className="file-button">导入条件<input type="file" accept="application/json,.json" onChange={e=>importWatch(e.target.files?.[0])}/></label></div><p className="muted">通知仅在本网页打开且浏览器允许时发送。RSS 可供支持后台通知的阅读器订阅。</p></section>:
         tab==='sources'?<section className="source-grid">{data.sources.map(source=><article className="source-card" key={source.id}><div className="row"><h2>{source.name}</h2><span className={'badge '+(source.status==='ok'?'verified':'warning')}>{source.status==='ok'?'采集成功':source.status==='partial'?'部分完成':'采集失败'}</span></div><p>{source.scope}</p><dl><dt>最近尝试</dt><dd>{date(source.checked_at,true)}</dd><dt>最近成功</dt><dd>{date(source.last_success_at,true)}</dd><dt>核验候选 / 匹配记录</dt><dd>{source.scanned} / {source.matched}</dd></dl>{source.error&&<details><summary>无法核验的记录</summary><p className="error">{source.error}</p></details>}<a href={source.url} target="_blank" rel="noreferrer">访问来源 ↗</a></article>)}<article className="source-card"><h2>采集说明</h2><p>云端计划每 30 分钟检查一次，任务可能排队。来源报错时保留已有数据；搜索中未再次出现的岗位标记为“待核验”。</p><p>网站展示的是当前接入来源和搜索范围内发现的岗位。单位性质以来源标注为依据，委托代招的实际用人单位性质单独核验。</p><a href={repo+'/actions'} target="_blank" rel="noreferrer">查看运行记录 ↗</a></article></section>:
@@ -138,6 +149,22 @@ export default function Radar({initial}:{initial:Snapshot}) {
         <footer className="page-footer"><span>依据公开招聘页面 · 要求与投递状态以来源为准</span><a href={repo+'/actions'} target="_blank" rel="noreferrer">云端运行记录 ↗</a></footer>
       </div>
     </main>
-    {detail&&<div className="detail-backdrop" onClick={closeJob}><section role="dialog" aria-modal="true" aria-label="岗位详情" className="detail-panel" onClick={e=>e.stopPropagation()} onKeyDown={e=>{if(e.key==='Escape')closeJob();}}><div className="detail-top"><span>岗位详情</span><button autoFocus aria-label="关闭岗位详情" onClick={closeJob}>×</button></div><div className="detail-content"><p className="eyebrow">{detail.company}</p><h2>{detail.title}</h2><span className="badge verified">{detail.status==='open'?'最近核验可访问':'待重新核验'}</span><dl className="detail-fields"><dt>单位性质</dt><dd>{detail.company_type}</dd><dt>工作地点</dt><dd>{detail.city || '未公布'}</dd><dt>招聘类型</dt><dd>实习</dd><dt>学历要求</dt><dd>{detail.education}</dd><dt>毕业年份</dt><dd>{detail.graduation_year.join(' / ') || '未公布'}</dd><dt>来源发布时间</dt><dd>{date(detail.publish_date,true)}</dd><dt>截止日期</dt><dd>{detail.deadline || '未公布'}</dd></dl><h3>岗位要求</h3><div className="description">{detail.description.replace(/([；。])(?=\d+[、.])/g,'$1\n\n').replace(/【/g,'\n\n【')}</div><h3>技能</h3><div className="skills">{detail.skills.map(skill=><span key={skill}>{skill}</span>)}</div><h3>识别依据</h3><p className="evidence">实习：{detail.internship_evidence}<br/>软件测试：{detail.software_evidence.join('、')}<br/>{detail.company_type_evidence}</p><h3>来源与记录</h3><p className="evidence">{detail.source_name}<br/>首次发现 {date(detail.first_seen_at,true)}<br/>最近确认 {date(detail.last_seen_at,true)}<br/>最近检查 {date(detail.last_checked_at,true)}<br/>{detail.status_reason}</p>{data.jobs.filter(j=>j.duplicate_group===detail.duplicate_group && j.id!==detail.id).map(j=><p key={j.id}><a href={j.source_url} target="_blank" rel="noreferrer">相同岗位的其他来源：{j.source_name} ↗</a></p>)}<h3>该岗位的变化</h3>{data.events.filter(e=>e.job_id===detail.id).reverse().map(event=><div className="detail-event" key={event.id}><small>{date(event.at,true)} · {event.type==='new'?'首次发现':event.type==='deadline'?'即将截止':'字段更新'}</small>{event.changes.map(change=><details key={change.field}><summary>{labels[change.field] || change.field}</summary><div className="before">{display(change.before)}</div><div className="after">{display(change.after)}</div></details>)}</div>)}</div><div className="detail-action"><a className="primary" href={detail.source_url} target="_blank" rel="noreferrer">查看招聘来源页面 ↗</a><small>在来源网站确认要求并投递</small></div></section></div>}
+    {detail&&<div className="detail-backdrop" onClick={closeJob}>
+      <section role="dialog" aria-modal="true" aria-label="岗位详情" className="detail-panel" onClick={e=>e.stopPropagation()} onKeyDown={e=>{if(e.key==='Escape')closeJob();}}>
+        <div className="detail-top"><span>岗位详情</span><button autoFocus aria-label="关闭岗位详情" onClick={closeJob}>×</button></div>
+        <div className="detail-content">
+          <p className="eyebrow">{detail.company}</p><h2>{detail.title}</h2><span className="badge verified">{detail.status==='open'?'最近核验可访问':detail.status==='closed'?'已关闭':'待重新核验'}</span>
+          <dl className="detail-fields"><dt>单位性质</dt><dd>{detail.company_type}</dd><dt>工作地点</dt><dd>{detail.city || '未公布'}</dd><dt>招聘类型</dt><dd>实习</dd><dt>学历要求</dt><dd>{detail.education}</dd><dt>毕业年份</dt><dd>{detail.graduation_year.join(' / ') || '未公布'}</dd><dt>来源发布时间</dt><dd>{detail.publish_date?new Date(detail.publish_date).toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'}):'未公布'}</dd><dt>截止日期</dt><dd>{detail.deadline || '未公布'}</dd></dl>
+          <JobAnalysis job={detail}/>
+          <h3>岗位要求</h3><div className="description">{detail.description.replace(/([；。])(?=\d+[、.])/g,'$1\n\n').replace(/【/g,'\n\n【')}</div>
+          <h3>技能</h3><div className="skills">{detail.skills.map(skill=><span key={skill}>{skill}</span>)}</div>
+          <h3>识别依据</h3><p className="evidence">实习：{detail.internship_evidence}<br/>软件测试：{detail.software_evidence.join('、')}<br/>{detail.company_type_evidence}</p>
+          <h3>来源与记录</h3><p className="evidence">{detail.source_name}<br/>首次发现 {date(detail.first_seen_at,true)}<br/>最近确认 {date(detail.last_seen_at,true)}<br/>最近检查 {date(detail.last_checked_at,true)}<br/>{detail.status_reason}</p>
+          {data.jobs.filter(j=>j.duplicate_group===detail.duplicate_group && j.id!==detail.id).map(j=><p key={j.id}><a href={j.source_url} target="_blank" rel="noreferrer">相同岗位的其他来源：{j.source_name} ↗</a></p>)}
+          <h3>该岗位的变化</h3>{data.events.filter(e=>e.job_id===detail.id).reverse().map(event=><div className="detail-event" key={event.id}><small>{date(event.at,true)} · {event.type==='new'?'首次发现':event.type==='deadline'?'即将截止':'字段更新'}</small>{event.changes.map(change=><details key={change.field}><summary>{labels[change.field] || change.field}</summary><div className="before">{display(change.before)}</div><div className="after">{display(change.after)}</div></details>)}</div>)}
+        </div>
+        <div className="detail-action"><a className="primary" href={detail.source_url} target="_blank" rel="noreferrer">查看招聘来源页面 ↗</a><small>在来源网站确认要求并投递</small></div>
+      </section>
+    </div>}
   </div>;
 }

@@ -9,7 +9,7 @@ assert.equal(new Set(state.jobs.map(j=>j.id)).size,state.jobs.length);
 for(const job of state.jobs) {
   JobSchema.parse(job);
   assert(classify(job.title,job.description,job.internship_evidence));
-  assert(['www.ciiczhaopin.com','www.ncss.cn'].includes(new URL(job.source_url).hostname));
+  assert(['www.ciiczhaopin.com','www.ncss.cn','campus.jd.com'].includes(new URL(job.source_url).hostname));
   for(const key of ['first_seen_at','last_seen_at','last_checked_at']) assert(Number.isFinite(Date.parse(job[key])));
 }
 for(const event of state.events) assert(state.jobs.some(j=>j.id===event.job_id));

@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { XMLBuilder } from 'fast-xml-parser';
 import { collectCiic, collectNcss } from '../lib/sources.mjs';
+import { collectJd } from '../lib/official-sources.mjs';
 import { mergeState, JobSchema, classify } from '../lib/model.mjs';
 
 const now=new Date().toISOString();
@@ -8,7 +9,7 @@ const previous=JSON.parse(await readFile('data/state.json','utf8'));
 previous.jobs.forEach(job=>JobSchema.parse(job));
 previous.jobs=previous.jobs.filter(job=>classify(job.title,job.description,job.internship_evidence));
 previous.events=previous.events.filter(event=>previous.jobs.some(job=>job.id===event.job_id));
-const adapters=[{id:'ciic',name:'中智招聘',url:'https://www.ciiczhaopin.com/campus/index',run:collectCiic},{id:'ncss',name:'国家大学生就业服务平台',url:'https://www.ncss.cn/student/jobs/index.html',run:collectNcss}];
+const adapters=[{id:'ciic',name:'中智招聘',url:'https://www.ciiczhaopin.com/campus/index',run:collectCiic},{id:'ncss',name:'国家大学生就业服务平台',url:'https://www.ncss.cn/student/jobs/index.html',run:collectNcss},{id:'jd',name:'京东官方校园招聘',url:'https://campus.jd.com/',run:collectJd}];
 const selected=process.argv.find(arg=>arg.startsWith('--source='))?.split('=')[1];
 if(selected && !adapters.some(adapter=>adapter.id===selected)) throw new Error('未知招聘来源');
 const activeAdapters=adapters.filter(adapter=>!selected || adapter.id===selected);
