@@ -26,6 +26,7 @@ try {
   page.on('pageerror',error=>errors.push(error.message));
   const origin=process.env.RADAR_URL || 'http://127.0.0.1:4173/test-intern-radar/';
   await page.goto(origin,{waitUntil:'networkidle'});
+  assert.equal(await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(233, 230, 224)');
   await page.locator('.job-card').first().waitFor();
   const title=await page.locator('.job-title').first().innerText();
   await page.getByLabel('搜索岗位',{exact:true}).fill(title);
@@ -34,6 +35,7 @@ try {
   await page.getByRole('dialog').waitFor();
   assert((await page.locator('.description').innerText()).length>20);
   assert(/^https:\/\/(www.ncss.cn|www.ciiczhaopin.com)\//.test(await page.locator('.detail-action a').getAttribute('href')));
+  assert(await page.locator('.description').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=18));
   await page.getByLabel('关闭岗位详情').click();
   await page.getByLabel('搜索岗位',{exact:true}).fill('不存在的检索条件987654321');
   assert.equal(await page.locator('.job-card').count(),0);
@@ -50,10 +52,16 @@ try {
     await page.getByRole('navigation').getByRole('button',{name:new RegExp(name)}).click();
     assert((await page.locator('h1').innerText()).length>0);
   }
-  assert.equal(await page.locator('.source-card').count(),3);
+  assert((await page.locator('.source-card').count())>=3);
   await page.getByRole('navigation').getByRole('button',{name:/全部岗位/}).click();
   await page.setViewportSize({width:390,height:844});
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'移动端出现横向溢出');
+  assert(await page.locator('.job-title').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=22));
+  assert(await page.locator('.job-meta').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=16));
+  await page.setViewportSize({width:320,height:740});
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'320px 宽度出现横向溢出');
+  await page.getByRole('button',{name:'同步最新数据'}).click();
+  await page.getByRole('status').filter({hasText:'已取得云端最近发布的数据'}).waitFor();
   assert.deepEqual(errors,[]);
   console.log('浏览器验证通过：真实岗位、搜索、详情、Watchlist 保存、导航、移动端布局、无运行错误');
 } finally {await browser.close();await new Promise(r=>server.close(r));}

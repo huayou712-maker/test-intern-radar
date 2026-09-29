@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Job, Snapshot, Watch } from '../lib/types';
 
 const base='/test-intern-radar';
@@ -39,6 +39,7 @@ export default function Radar({initial}:{initial:Snapshot}) {
   const [draft,setDraft]=useState<Watch>(defaultWatch);
   const [message,setMessage]=useState('');
   const [notice,setNotice]=useState(false);
+  const [syncing,setSyncing]=useState(false);
   const [now,setNow]=useState(initial.generated_at || '2026-01-01T00:00:00Z');
   useEffect(()=>{
     setNow(new Date().toISOString());
@@ -51,8 +52,8 @@ export default function Radar({initial}:{initial:Snapshot}) {
     const timer=setInterval(()=>setNow(new Date().toISOString()),60000);
     return ()=>clearInterval(timer);
   },[]);
-  useEffect(()=>{
-    const timer=setInterval(async()=>{
+  const syncData=useCallback(async(manual=false)=>{
+      if(manual)setSyncing(true);
       try {
         const response=await fetch(`${base}/data/jobs.json?at=${Date.now()}`,{cache:'no-store'});
         if(!response.ok) throw new Error('岗位数据获取失败');
@@ -62,10 +63,14 @@ export default function Radar({initial}:{initial:Snapshot}) {
         const fresh=next.events.filter(e=>!known.has(e.id) && next.jobs.some(j=>j.id===e.job_id && matches(j,watch)));
         if(notice && Notification.permission==='granted' && fresh.length) new Notification('测试开发实习岗位雷达',{body:`你的关注条件有 ${fresh.length} 条新增或变化，打开 Matches 查看。`,tag:'test-intern-radar'});
         setData(next);
+        if(manual)setMessage('已取得云端最近发布的数据。招聘来源由定时任务采集。');
       } catch(error) {setMessage(`同步失败：${String(error)}。页面保留最近取得的数据。`);}
-    },120000);
-    return ()=>clearInterval(timer);
+      finally {if(manual)setSyncing(false);}
   },[data.events,notice,watch]);
+  useEffect(()=>{
+    const timer=setInterval(()=>void syncData(),120000);
+    return ()=>clearInterval(timer);
+  },[syncData]);
   const jobs=useMemo(()=>{
     const grouped=new Map<string,Job>();
     for(const job of [...data.jobs].sort((a,b)=>b.last_seen_at.localeCompare(a.last_seen_at))) {
@@ -120,6 +125,11 @@ export default function Radar({initial}:{initial:Snapshot}) {
       <div className="workspace">
         <div className="page-heading"><div><p className="eyebrow">SOFTWARE QUALITY · INTERNSHIPS</p><h1>{tab==='today'?'今天值得关注':tab==='matches'?'符合你的关注条件':tab==='watch'?'把目标记在这里':tab==='history'?'招聘信息的变化':tab==='sources'?'每条信息，都有出处':'测试开发实习岗位'}</h1><p className="subtitle">{tab==='all'?'从公开招聘信息中发现机会，回到来源页面投递。':tab==='today'?`${today} · 新岗位、要求变化与临近截止` :tab==='matches'?'根据 Watchlist 自动筛选已核验的岗位。':tab==='watch'?'条件之间同时满足，同一输入框内的多个选项满足任意一个。':tab==='sources'?'成功检查时间与采集范围公开可查。':'保存首次发现以来的记录，逐项查看要求如何改变。'}</p></div><div className="updated"><span className="live-dot"/>最近数据生成<strong>{date(data.generated_at,true)}</strong></div></div>
         {message&&<div className="message" role="status">{message}<button aria-label="关闭提示" onClick={()=>setMessage('')}>×</button></div>}
+        <section className="sync-panel" aria-label="更新与采集记录">
+          <div><strong>定时采集 · 每 30 分钟</strong><p>每小时第 17、47 分钟计划运行，GitHub 可能延迟调度。页面每两分钟同步云端数据。</p>{data.generated_at && Date.parse(now)-Date.parse(data.generated_at)>90*60000 && <p role="alert">数据已超过 90 分钟未更新，请查看云端运行记录；当前页面保留上次采集结果。</p>}</div>
+          <div className="sync-evidence"><span>本轮检查候选 <b>{data.sources.reduce((sum,source)=>sum+source.scanned,0)}</b> 条</span><span>接入 <b>{data.sources.length}</b> 个来源 · <a href={base+'/data/jobs.json'} target="_blank" rel="noreferrer">查看采集数据 ↗</a></span><a href={repo+'/actions'} target="_blank" rel="noreferrer">查看每次运行记录 ↗</a></div>
+          <button disabled={syncing} onClick={()=>void syncData(true)}>{syncing?'正在同步…':'同步最新数据'}</button>
+        </section>
         <div className="stats-grid"><div><span>已核验在招</span><b>{active.length}</b><small>合并完全相同的重复记录</small></div><div><span>今日新增</span><b>{jobs.filter(j=>day(j.first_seen_at)===today).length}</b><small>以首次发现时间计算</small></div><div><span>与你匹配</span><b>{matchesCount}</b><small>符合当前关注条件</small></div><div><span>三天内截止</span><b>{closing.length}</b><small>只计算明确公布的日期</small></div></div>
         {tab==='watch'?<section className="settings-panel"><h2>我的关注条件</h2><p>保存在当前浏览器；可以导出后在其他设备导入。</p><div className="form-grid"><label>关注企业<input value={draft.companies} onChange={e=>setDraft({...draft,companies:e.target.value})} placeholder="中国电信，中国移动，中国电子"/><small>留空表示全部企业；支持名称包含匹配</small></label><label>工作地点<input value={draft.cities} onChange={e=>setDraft({...draft,cities:e.target.value})} placeholder="北京，成都，西安，南京"/><small>使用逗号分隔，留空表示全国</small></label><label>单位性质<select value={draft.nature} onChange={e=>setDraft({...draft,nature:e.target.value})}><option value="all">全部单位</option><option value="state">国企 / 央企（来源明确标注）</option></select></label><label>毕业年份<input value={draft.year} onChange={e=>setDraft({...draft,year:e.target.value})} placeholder="例如 2027，留空表示全部"/></label><label className="check"><input type="checkbox" checked={draft.degree} onChange={e=>setDraft({...draft,degree:e.target.checked})}/>学历为本科、大专或不限</label></div><div className="actions"><button className="primary" onClick={saveWatch}>保存关注条件</button><button onClick={downloadWatch}>导出条件</button><label className="file-button">导入条件<input type="file" accept="application/json,.json" onChange={e=>importWatch(e.target.files?.[0])}/></label></div><p className="muted">通知仅在本网页打开且浏览器允许时发送。RSS 可供支持后台通知的阅读器订阅。</p></section>:
         tab==='sources'?<section className="source-grid">{data.sources.map(source=><article className="source-card" key={source.id}><div className="row"><h2>{source.name}</h2><span className={'badge '+(source.status==='ok'?'verified':'warning')}>{source.status==='ok'?'采集成功':source.status==='partial'?'部分完成':'采集失败'}</span></div><p>{source.scope}</p><dl><dt>最近尝试</dt><dd>{date(source.checked_at,true)}</dd><dt>最近成功</dt><dd>{date(source.last_success_at,true)}</dd><dt>核验候选 / 匹配记录</dt><dd>{source.scanned} / {source.matched}</dd></dl>{source.error&&<details><summary>无法核验的记录</summary><p className="error">{source.error}</p></details>}<a href={source.url} target="_blank" rel="noreferrer">访问来源 ↗</a></article>)}<article className="source-card"><h2>采集说明</h2><p>云端计划每 30 分钟检查一次，任务可能排队。来源报错时保留已有数据；搜索中未再次出现的岗位标记为“待核验”。</p><p>网站展示的是当前接入来源和搜索范围内发现的岗位。单位性质以来源标注为依据，委托代招的实际用人单位性质单独核验。</p><a href={repo+'/actions'} target="_blank" rel="noreferrer">查看运行记录 ↗</a></article></section>:

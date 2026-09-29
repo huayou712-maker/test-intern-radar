@@ -2,6 +2,7 @@ export type Job = {
   id:string; title:string; company:string; company_type:string; company_type_evidence:string;
   city:string; job_type:string; graduation_year:string[]; education:string; publish_date:string|null;
   deadline:string|null; skills:string[]; description:string; source:string; source_name:string;
+  source_updated_at?:string|null;
   source_url:string; internship_evidence:string; software_evidence:string[]; first_seen_at:string;
   last_seen_at:string; last_checked_at:string; status:string; status_reason:string; duplicate_group:string;
 };

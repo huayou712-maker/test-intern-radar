@@ -9,14 +9,19 @@ previous.jobs.forEach(job=>JobSchema.parse(job));
 previous.jobs=previous.jobs.filter(job=>classify(job.title,job.description,job.internship_evidence));
 previous.events=previous.events.filter(event=>previous.jobs.some(job=>job.id===event.job_id));
 const adapters=[{id:'ciic',name:'中智招聘',url:'https://www.ciiczhaopin.com/campus/index',run:collectCiic},{id:'ncss',name:'国家大学生就业服务平台',url:'https://www.ncss.cn/student/jobs/index.html',run:collectNcss}];
-const settled=await Promise.allSettled(adapters.map(async adapter=>{
+const selected=process.argv.find(arg=>arg.startsWith('--source='))?.split('=')[1];
+if(selected && !adapters.some(adapter=>adapter.id===selected)) throw new Error('未知招聘来源');
+const activeAdapters=adapters.filter(adapter=>!selected || adapter.id===selected);
+const settled=await Promise.allSettled(activeAdapters.map(async adapter=>{
   console.log('开始采集',adapter.name);
   const result=await adapter.run(now);
   console.log('采集完成',adapter.name,'检查',result.scanned,'匹配',result.jobs.length);
   return result;
 }));
-const results=settled.map((result,i)=>result.status==='fulfilled'?result.value:{id:adapters[i].id,name:adapters[i].name,url:adapters[i].url,status:'error',error:String(result.reason?.message || result.reason),scope:'采集失败，请查看来源原页',scanned:0,matched:0,limited:true});
+const results=settled.map((result,i)=>result.status==='fulfilled'?result.value:{id:activeAdapters[i].id,name:activeAdapters[i].name,url:activeAdapters[i].url,status:'error',error:String(result.reason?.message || result.reason),scope:'采集失败，请查看来源原页',scanned:0,matched:0,limited:true});
 const state=mergeState(previous,results,now);
+if(selected) state.sources.push(...previous.sources.filter(source=>adapters.some(adapter=>adapter.id===source.id) && !results.some(result=>result.id===source.id)));
+state.generated_at=new Date().toISOString();
 await mkdir('public/data',{recursive:true});
 const data=JSON.stringify(state,null,2)+'\n';
 await writeFile('data/state.json.next',data);
