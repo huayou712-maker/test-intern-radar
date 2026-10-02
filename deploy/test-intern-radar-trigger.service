@@ -1,0 +1,17 @@
+[Unit]
+Description=岗位雷达自动采集触发
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+DynamicUser=yes
+LoadCredential=github-token:/etc/test-intern-radar/github-token
+Environment=GITHUB_TOKEN_FILE=%d/github-token
+ExecStart=/opt/test-intern-radar/runtime/bin/node /opt/test-intern-radar/cloud-trigger.mjs
+TimeoutStartSec=90
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=

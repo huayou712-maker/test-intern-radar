@@ -1,0 +1,12 @@
+[Unit]
+Description=每三十分钟启动岗位雷达采集
+
+[Timer]
+OnCalendar=*-*-* *:17,47:00
+OnBootSec=1min
+Persistent=yes
+AccuracySec=1s
+Unit=test-intern-radar-trigger.service
+
+[Install]
+WantedBy=timers.target
