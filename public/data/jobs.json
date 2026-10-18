@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-18T13:50:45.571Z",
+  "generated_at": "2026-10-18T14:21:07.484Z",
   "jobs": [
     {
       "id": "ciic:da548ad784ed4ce686fd9f9e61e56d3e",
@@ -46,7 +46,7 @@
       ],
       "first_seen_at": "2026-09-29T07:19:37.347Z",
       "last_seen_at": "2026-10-14T16:47:28.586Z",
-      "last_checked_at": "2026-10-18T13:47:26.396Z",
+      "last_checked_at": "2026-10-18T14:17:26.791Z",
       "status": "unverified",
       "status_reason": "本次搜索范围内未再次确认；不代表招聘结束",
       "fingerprint": "baeb980c8eb5567d803214a2a299900aac98b81f688f7b6ab24773b20ae72148",
@@ -884,8 +884,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T07:42:32.869Z",
-      "last_seen_at": "2026-10-18T13:47:26.396Z",
-      "last_checked_at": "2026-10-18T13:47:26.396Z",
+      "last_seen_at": "2026-10-18T14:17:26.791Z",
+      "last_checked_at": "2026-10-18T14:17:26.791Z",
       "status": "open",
       "status_reason": "本次成功取得岗位详情",
       "fingerprint": "cd75b8e7e48618d3ecea26a167eebedb02b12509048af5003192cd6b326c8cc8",
@@ -3987,8 +3987,8 @@
         "软件测试"
       ],
       "first_seen_at": "2026-09-29T08:22:50.260Z",
-      "last_seen_at": "2026-10-18T13:47:26.396Z",
-      "last_checked_at": "2026-10-18T13:47:26.396Z",
+      "last_seen_at": "2026-10-18T14:17:26.791Z",
+      "last_checked_at": "2026-10-18T14:17:26.791Z",
       "status": "unverified",
       "status_reason": "来源日期 2024-03-01 距今超过 180 天，请向招聘单位确认当前招聘状态",
       "fingerprint": "e7d69d49a0ae16ded7c124e89edaff7b513494cb3799e50f44fbafe87399cb97",
@@ -9249,21 +9249,21 @@
       "scope": "测试 / 软件测试 / 测试开发 / 自动化测试 / 测试实习 / SDET / QA，每个关键词最多 400 条；详情无法核验 15 条",
       "limited": true,
       "matched": 1,
-      "last_success_at": "2026-10-18T13:47:26.396Z",
-      "checked_at": "2026-10-18T13:47:26.396Z"
+      "last_success_at": "2026-10-18T14:17:26.791Z",
+      "checked_at": "2026-10-18T14:17:26.791Z"
     },
     {
       "id": "ncss",
       "name": "国家大学生就业服务平台",
       "url": "https://www.ncss.cn/student/jobs/index.html",
-      "status": "partial",
-      "error": "https://www.ncss.cn/student/jobs/2mF9cz4rrWd8wkCg5gAXMt/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/ELsd8WhampYMDuvo7ykcta/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/HBSjZeSk8ULrSwkNdMu7FH/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/PoSDYczMvHvLWFU7QvfG1r/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/PqM1w3bY7escsBAKsaDqd5/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/VDeJcQoBspVU1wyf9j4uiU/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/CfJEmiuzusSAS8jTbk14xT/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/7x8BYbrhUETSusM3X3W1Hm/detail.html 岗位正文不存在或页面结构变化：.mainContent\nhttps://www.ncss.cn/student/jobs/6q6Vu3uyF4SHTGJ9QMkvX8/detail.html 岗位正文不存在或页面结构变化：.mainContent",
-      "scanned": 202,
-      "scope": "实习分类搜索 测试 / 软件测试 / 测试开发 / 自动化测试 / 测试实习 / SDET / QA / 功能测试 / 性能测试 / 游戏测试 / 测试工程师 / 质量保障 / 质量保证，每个关键词公开可访问的前五页、最多 50 条；详情无法核验 9 条",
+      "status": "error",
+      "error": "HTTP 500: /student/jobs/jobslist/ajax/",
+      "scope": "采集失败，请查看来源原页",
+      "scanned": 0,
+      "matched": 0,
       "limited": true,
-      "matched": 114,
       "last_success_at": "2026-10-18T13:47:26.396Z",
-      "checked_at": "2026-10-18T13:47:26.396Z"
+      "checked_at": "2026-10-18T14:17:26.791Z"
     },
     {
       "id": "jd",
@@ -9274,8 +9274,8 @@
       "scope": "官方实习分类；取得 102 条发布记录，接口总数 102；按测试岗位规则筛选，保留原始发布日期",
       "limited": false,
       "matched": 1,
-      "last_success_at": "2026-10-18T13:47:26.396Z",
-      "checked_at": "2026-10-18T13:47:26.396Z"
+      "last_success_at": "2026-10-18T14:17:26.791Z",
+      "checked_at": "2026-10-18T14:17:26.791Z"
     }
   ]
 }
